@@ -161,7 +161,7 @@ int nearest(int n, point2D *P, int A, bool *Visited) {
 }
 
 void print_cycle(int n, point2D *P, int *seq) {
-    // YOU NEED TO IMPLEMENT THIS FUNCTION
+    // implemented...
     for (int i = 0; i < n; i++) {
         cout << "(" << P[seq[i]].x << "," << P[seq[i]].y << ")";
         if (i < (n)) {
