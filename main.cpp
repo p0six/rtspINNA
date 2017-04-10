@@ -7,9 +7,6 @@
 
 #include <iostream>
 #include <iomanip>
-#include <cstdlib>
-#include <string>
-#include <chrono>
 #include <cmath>
 using namespace std;
 
@@ -105,8 +102,8 @@ int main() {
   cout << "The relative minimum length is " << dist << endl;
 
   // print the elapsed time in seconds and fractions of seconds
-  int microseconds =
-    chrono::duration_cast<chrono::microseconds>(end - start).count();
+  long long int microseconds = chrono::duration_cast<chrono::microseconds>(end - start).count();
+
   double seconds = microseconds / 1E6;
   cout << "elapsed time: " << seconds << " seconds" << endl;
 
@@ -120,7 +117,7 @@ int farthest_point(int n, point2D *P) { // calculate the starting vertex
     // function to calculate the furthest distance between any two 2D points
     // implemented...
     float max_dist = 0;
-    float dist; int index;
+    float dist; int index = 0;
 
     for(int i=0; i < n-1; i++)
         for(int j=i+1; j < n;j++) {
@@ -136,18 +133,10 @@ int farthest_point(int n, point2D *P) { // calculate the starting vertex
 int nearest(int n, point2D *P, int A, bool *Visited) {
     // function to calculate the nearest unvisited neighboring point
     // must spit out the index of the nearest node to A that is NOT visited
+
     // implemented...
-
-    int nearest = 0, nearestDistance;
-    for (int i = 0; i < n; i++) { // Get our legitimate case to compare against
-        if (!Visited[i] && i != A) {
-            nearestDistance = abs(P[A].x - P[i].x) + abs(P[A].y - P[i].y);
-            nearest = i;
-            break;
-        }
-    }
-
-    int currentDistance;
+    int nearest = 0; float currentDistance;
+    float nearestDistance = abs(P[A].x - P[farthest_point(n, P)].x) + abs(P[A].y - P[farthest_point(n, P)].y) ;
     for (int i = 0; i < n; i++) {
         if (i != A && !Visited[i]) {
             currentDistance = abs(P[A].x - P[i].x) + abs(P[A].y - P[i].y);
